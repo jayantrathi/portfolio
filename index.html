@@ -257,6 +257,18 @@
     padding: 4px 9px; border-radius: 3px; border: 1px solid var(--border);
   }
   .project-card.media-top .project-link { position: relative; z-index: 2; }
+
+  /* dual portrait clips side by side, for a two-command demo */
+  .project-media-dual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    width: 100%; margin-bottom: 24px;
+  }
+  .project-media-dual .project-media-wide {
+    aspect-ratio: 9 / 16; margin-bottom: 0;
+  }
+  @media (max-width: 600px) {
+    .project-media-dual { grid-template-columns: 1fr; }
+  }
   .project-featured-badge {
     font-family: 'Space Mono', monospace;
     font-size: 9px; letter-spacing: 0.14em;
@@ -482,7 +494,7 @@
         <div class="stat-label">Published international research paper</div>
       </div>
       <div>
-        <div class="stat-num">9<span>+</span></div>
+        <div class="stat-num">8<span>+</span></div>
         <div class="stat-label">End-to-end hardware & AI projects</div>
       </div>
       <div>
@@ -503,6 +515,73 @@
     <div class="projects-grid">
 
       <div class="project-card media-top featured reveal" style="margin-bottom: 2px;">
+        <div class="project-media-dual">
+          <div class="project-media-wide">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="vla-arm-pen.mp4" type="video/mp4">
+            </video>
+            <span class="project-media-tag">Command: &quot;pick up the pen&quot;</span>
+          </div>
+          <div class="project-media-wide">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="vla-arm-bear.mp4" type="video/mp4">
+            </video>
+            <span class="project-media-tag">Command: &quot;pick up the bear&quot;</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start;">
+          <div>
+            <div class="project-featured-badge" style="color: var(--green);">MANIPULATION · VISION-LANGUAGE-ACTION</div>
+            <div class="project-title">Language-Controlled Robotic Arm</div>
+            <p class="project-desc">
+              A self-assembled SO-101 arm that picks up the object you name. I fine-tuned SmolVLA, a
+              450M-parameter vision-language-action foundation model, on 90 self-collected teleoperation
+              demonstrations for language-conditioned pick-and-place. It grasps multiple objects with
+              object-appropriate grips (a pinch for the pen, a squeeze for the bear) and generalizes to
+              arbitrary positions in the workspace, running in real time on-device. I'm extending it with
+              an open-vocabulary detector for multi-object selection and voice control.
+            </p>
+            <div class="project-metrics">
+              <div class="metric">
+                <div class="metric-num">450M</div>
+                <div class="metric-label">SmolVLA, fine-tuned</div>
+              </div>
+              <div class="metric">
+                <div class="metric-num">90</div>
+                <div class="metric-label">self-collected demos</div>
+              </div>
+              <div class="metric">
+                <div class="metric-num">3</div>
+                <div class="metric-label">objects, distinct grasp types</div>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">SmolVLA</span>
+              <span class="project-tag">Hugging Face LeRobot</span>
+              <span class="project-tag">SO-101</span>
+              <span class="project-tag">Vision-Language-Action</span>
+              <span class="project-tag">Imitation Learning</span>
+              <span class="project-tag">PyTorch</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="https://github.com/jayantrathi" target="_blank" class="project-link">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <a href="https://huggingface.co/jayantrathi/smolvla_lang_grasp_v1" target="_blank" class="project-link">
+              HF Model
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <a href="https://huggingface.co/datasets/jayantrathi/lang_grasp_v1" target="_blank" class="project-link">
+              HF Dataset
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card media-top featured reveal" style="margin-bottom: 2px;">
         <div class="project-media-wide">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="mapping.mp4" type="video/mp4">
@@ -514,13 +593,13 @@
             <div class="project-featured-badge">AUTONOMOUS VEHICLES · LIDAR SLAM</div>
             <div class="project-title">3D Environmental Mapping for Autonomous Vehicles</div>
             <p class="project-desc">
-              Built a real-time 3D mapping and odometry pipeline integrating LeGO-LOAM with ROS,
+              Built a real-time 3D mapping and odometry pipeline integrating LeGO-LOAM with ROS2,
               using a Velodyne VLP-16 LiDAR fused with IMU and GPS data. Ran multiple closed-loop
               campus runs achieving stable feature-based maps for autonomous navigation. Tuned
               extrinsic calibration, motion compensation, and sensor fusion parameters for robust outdoor odometry.
             </p>
             <div class="project-tags">
-              <span class="project-tag">ROS</span>
+              <span class="project-tag">ROS2</span>
               <span class="project-tag">LiDAR SLAM</span>
               <span class="project-tag">LeGO-LOAM</span>
               <span class="project-tag">VLP-16</span>
@@ -535,6 +614,7 @@
           </a>
         </div>
       </div>
+
 
       <div class="project-card media-top featured reveal" style="margin-bottom: 2px;">
         <div class="project-media-wide">
@@ -612,7 +692,7 @@
               <source src="home-security-demo.mp4" type="video/mp4">
             </video>
           </div>
-          <div class="project-media-label">Early build, pre-GPS. Shows the onboard AI detection <br> and LINE alerting live <br> with a Line Detection movement system</div>
+          <div class="project-media-label">Early build, pre-GPS. Shows the onboard AI<br>detection and LINE alerting live.</div>
         </div>
         <div>
           <div class="project-featured-badge" style="color: var(--green);">MULTIMODAL AI · IoT · PUBLISHED</div>
@@ -756,7 +836,7 @@
             <span style="font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em; padding: 3px 8px; border-radius: 3px; background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(0,212,255,0.3);">INDUSTRY</span>
           </div>
           <ul class="exp-bullets">
-            <li>Designed and deployed a part error-detection and replacement system, cutting a 3+ hour/day, two-person oversight process to ~45 minutes/week, then scaled the system from its Thailand pilot to Malaysia and Vietnam operations</li>
+            <li>Built an ML-based part-replacement prediction pipeline in Python and Java, increasing recommendation accuracy and cutting manual validation time across Southeast Asian operations.</li>
             <li>Developed automated shipping-tracking and data validation tools, eliminating manual workflows and improving part traceability across multiple departments.</li>
             <li>Created real-time PowerBI dashboards for logistics KPI visibility, directly accelerating decision-making for operations leadership.</li>
             <li>Served as technical troubleshooter across plant-wide engineering initiatives, resolving data pipeline bottlenecks and maintaining continuous operations.</li>
@@ -895,6 +975,9 @@
             <span class="skill-tag">Anomaly Detection</span>
             <span class="skill-tag">TensorFlow</span>
             <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">Vision-Language Models</span>
+            <span class="skill-tag">Imitation Learning</span>
+            <span class="skill-tag">LeRobot</span>
           </div>
         </div>
         <div>

@@ -609,7 +609,9 @@
             <div class="project-featured-badge">AUTONOMOUS VEHICLES · LIDAR SLAM</div>
             <div class="project-title">3D Environmental Mapping for Autonomous Vehicles</div>
             <p class="project-desc">
-              A real time LiDAR SLAM pipeline that builds a 3D map of the environment and tracks the vehicle’s pose as it drives. Built on LeGO-LOAM in ROS1, with a Velodyne VLP-16 fused with IMU and GPS. I drove repeated loops around campus and got stable, consistent maps across runs. Most of the work was in the tuning that makes outdoor odometry hold together: the extrinsic calibration between sensors, motion compensation for the spinning LiDAR, and the sensor fusion parameters.
+             A real time LiDAR SLAM pipeline for NEU’s autonomous vehicle, NUance, that builds a 3D map and tracks the car’s 6 DoF pose as it drives. Built on LeGO-LOAM with GTSAM in ROS Noetic, 
+             fusing a Velodyne VLP-16 with a 9 axis IMU and GPS. Collected the driving data, ran ICP loop closure over 150 GB of it to correct trajectory drift, and checked the recovered path against
+             GPS ground truth. I also benchmarked it against LIO-SAM to see where each one sits on the accuracy versus efficiency tradeoff.
             </p>
             <div class="project-tags">
               <span class="project-tag">ROS2</span>
@@ -627,7 +629,7 @@
           </a>
         </div>
       </div>
-
+      
 
       <div class="project-card media-top featured reveal" style="margin-bottom: 2px;">
         <div class="project-media-wide">
@@ -641,19 +643,39 @@
             <div class="project-featured-badge">AV PERCEPTION · ANOMALY DETECTION</div>
             <div class="project-title">Road-Hazard Corner-Case Detection</div>
             <p class="project-desc">
-             A real time LiDAR SLAM pipeline for NEU’s autonomous vehicle, NUance, that builds a 3D map and tracks the car’s 6 DoF pose as it drives. Built on LeGO-LOAM with GTSAM in ROS Noetic, 
-             fusing a Velodyne VLP-16 with a 9 axis IMU and GPS. Collected the driving data, ran ICP loop closure over 150 GB of it to correct trajectory drift, and checked the recovered path against
-             GPS ground truth. I also benchmarked it against LIO-SAM to see where each one sits on the accuracy versus efficiency tradeoff.
+            Self driving perception is trained on a fixed set of classes, so it tends to confidently mislabel anything it was never trained on, like a chunk of tire or lost cargo in the road. This system flags those unknown obstacles instead of guessing at them. I trained a DeepLabV3 segmenter with a ResNet-50 backbone on Cityscapes using outlier exposure, so it stays deliberately unsure on unfamiliar objects, and it matched the published paper’s average precision, trained from scratch. A depth gate then fits the road plane with RANSAC and suppresses flat false alarms like paint and manhole covers.          
             </p>
             <div class="project-metrics">
-              <div class="metric">
-                <div class="metric-num">0.89 <span>AUPR</span></div>
-                <div class="metric-label">Lost &amp; Found benchmark</div>
-              </div>
-              <div class="metric">
-                <div class="metric-num">0.11 <span>FPR95</span></div>
-                <div class="metric-label">after depth-gating</div>
-              </div>
+              <div style="margin:4px 0 20px; padding:16px 0 4px; border-top:1px solid var(--border);">
+              <div style="font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3); margin-bottom:12px;">Held-out Lost &amp; Found · AUPR higher is better, FPR95 lower is better</div>
+              <table style="width:100%; border-collapse:collapse; font-family:'Space Mono',monospace;">
+                <tr>
+                  <th style="text-align:left; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-3); font-weight:400; padding:0 0 8px;">Method</th>
+                  <th style="text-align:center; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-3); font-weight:400; padding:0 8px 8px;">AUPR</th>
+                  <th style="text-align:center; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-3); font-weight:400; padding:0 0 8px;">FPR95</th>
+                </tr>
+                <tr style="border-top:1px solid var(--border);">
+                  <td style="font-size:12px; color:var(--text-2); padding:9px 0;">RbA paper (reference)</td>
+                  <td style="text-align:center; font-size:12px; color:var(--text-3); padding:9px 8px;">0.70</td>
+                  <td style="text-align:center; font-size:12px; color:var(--text-3); padding:9px 0;">0.06</td>
+                </tr>
+                <tr style="border-top:1px solid var(--border);">
+                  <td style="font-size:12px; color:var(--text-2); padding:9px 0;">Swin-B checkpoint (downloaded)</td>
+                  <td style="text-align:center; font-size:12px; color:var(--text-3); padding:9px 8px;">0.78</td>
+                  <td style="text-align:center; font-size:12px; color:var(--text-3); padding:9px 0;">0.29</td>
+                </tr>
+                <tr style="border-top:1px solid var(--border);">
+                  <td style="font-size:12px; color:var(--text-2); padding:9px 0;">My model, trained on a laptop</td>
+                  <td style="text-align:center; font-size:12px; color:var(--text-2); padding:9px 8px;">0.69</td>
+                  <td style="text-align:center; font-size:12px; color:var(--text-2); padding:9px 0;">0.22</td>
+                </tr>
+                <tr style="border-top:1px solid var(--border);">
+                  <td style="font-size:12px; color:var(--text); padding:9px 0;">My model + depth gate</td>
+                  <td style="text-align:center; font-size:13px; color:var(--accent); font-weight:700; padding:9px 8px;">0.89</td>
+                  <td style="text-align:center; font-size:13px; color:var(--accent); font-weight:700; padding:9px 0;">0.11</td>
+                </tr>
+              </table>
+            </div>
             </div>
             <div class="project-tags">
               <span class="project-tag">PyTorch</span>

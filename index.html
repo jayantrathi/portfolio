@@ -609,10 +609,7 @@
             <div class="project-featured-badge">AUTONOMOUS VEHICLES · LIDAR SLAM</div>
             <div class="project-title">3D Environmental Mapping for Autonomous Vehicles</div>
             <p class="project-desc">
-              Built a real-time 3D mapping and odometry pipeline integrating LeGO-LOAM with ROS2,
-              using a Velodyne VLP-16 LiDAR fused with IMU and GPS data. Ran multiple closed-loop
-              campus runs achieving stable feature-based maps for autonomous navigation. Tuned
-              extrinsic calibration, motion compensation, and sensor fusion parameters for robust outdoor odometry.
+              A real time LiDAR SLAM pipeline that builds a 3D map of the environment and tracks the vehicle’s pose as it drives. Built on LeGO-LOAM in ROS1, with a Velodyne VLP-16 fused with IMU and GPS. I drove repeated loops around campus and got stable, consistent maps across runs. Most of the work was in the tuning that makes outdoor odometry hold together: the extrinsic calibration between sensors, motion compensation for the spinning LiDAR, and the sensor fusion parameters.
             </p>
             <div class="project-tags">
               <span class="project-tag">ROS2</span>
@@ -644,11 +641,9 @@
             <div class="project-featured-badge">AV PERCEPTION · ANOMALY DETECTION</div>
             <div class="project-title">Road-Hazard Corner-Case Detection</div>
             <p class="project-desc">
-              An anomaly-segmentation system that flags unknown road obstacles — tires, debris, lost cargo, animals —
-              that standard AV perception is never trained to recognise. Combined outlier-exposure training on a
-              DeepLabV3-ResNet50 backbone with a geometric depth-gating filter that fits a ground plane via RANSAC
-              to suppress false positives on flat road markings. Evaluated with scene-level splits across two
-              benchmarks, with documented cross-domain limitations.
+             A real time LiDAR SLAM pipeline for NEU’s autonomous vehicle, NUance, that builds a 3D map and tracks the car’s 6 DoF pose as it drives. Built on LeGO-LOAM with GTSAM in ROS Noetic, 
+             fusing a Velodyne VLP-16 with a 9 axis IMU and GPS. Collected the driving data, ran ICP loop closure over 150 GB of it to correct trajectory drift, and checked the recovered path against
+             GPS ground truth. I also benchmarked it against LIO-SAM to see where each one sits on the accuracy versus efficiency tradeoff.
             </p>
             <div class="project-metrics">
               <div class="metric">
@@ -680,8 +675,8 @@
           <div class="project-featured-badge" style="color: var(--amber);">REINFORCEMENT LEARNING</div>
           <div class="project-title">Deep RL Agents — Atari &amp; Custom Environments</div>
           <p class="project-desc">
-            Designed, trained, and benchmarked 10 deep RL agents — PPO, Dueling DQN, Quantile DQN,
-            and Attention-DQN variants — across Atari games and a custom-built Cubefield environment.
+            Designed, trained, and benchmarked 10 deep RL agents like PPO, Dueling DQN, Quantile DQN,
+            and Attention-DQN variants across Atari games and a custom-built Cubefield environment.
             Self-taught policy gradient methods, actor-critic architectures, and quantile regression,
             then implemented and compared them directly using PyTorch and OpenAI Gym.
           </p>
@@ -741,8 +736,8 @@
           <div class="project-featured-badge" style="color: var(--green);">SENSING · PRIVACY</div>
           <div class="project-title">WiFi-based Fall Detection</div>
           <p class="project-desc">
-            Privacy-preserving fall detection using WiFi RSSI signal disturbances — no cameras,
-            no wearables. Built a dual-ESP32 architecture, assembled a labelled dataset of 8,880
+            Privacy-preserving fall detection using WiFi RSSI signal disturbances without cameras and
+            wearables. Built a dual-ESP32 architecture, assembled a labelled dataset of 8,880
             recordings, and trained supervised ML classifiers for real-time anomaly detection.
           </p>
           <div class="project-tags">

@@ -534,7 +534,7 @@
             <div class="project-featured-badge" style="color: var(--green);">MANIPULATION · VISION-LANGUAGE-ACTION</div>
             <div class="project-title">Voice Controlled Robotic Arm</div>
             <p class="project-desc">
-             A SO-101 arm I built that grabs the object you name, now by voice. I fine tuned SmolVLA, a 450M parameter VLA model, on 200 teleoperation demos I collected across four objects, each needing its own grip. To pick the right object off a cluttered desk, a detector isolates the one you asked for and blurs the rest out of the camera feed, so the policy sees the clean single object scene it was trained on. A generic detector (OWLv2) kept mis-picking and capped the whole system, so I trained my own (RF-DETR) on these four objects, which removed that ceiling. If the object starts off screen the arm pans to find it, then grasps anywhere across its workspace, left to right, in real time on the laptop. The biggest grasp gain came from matching the training data to how the system runs: the arm turns to face the object before grasping, which fixed grasping on the left side of its reach.
+             A SO-101 arm I built that grabs the object you name, now by voice. I fine tuned SmolVLA, a 450M parameter VLA model, on 200 teleoperation demos I collected across four objects, each needing its own grip. To pick the right object off a cluttered desk, a detector isolates the one you asked for and blurs the rest out of the camera feed, so the policy sees the clean single object scene it was trained on. A generic detector (OWLv2) kept mis-picking and was letting down the whole system, so I trained my own (RF-DETR) on these four objects, which removed that ceiling. If the object starts off screen the arm pans to find it, then grasps anywhere across its workspace, left to right. The biggest grasp gain came from matching the training data to how the system runs, by turning the arm to face the object before grasping, which fixed grasping on the left side of its reach.
             </p>
             <div class="project-metrics">
               <div class="metric">
@@ -618,7 +618,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
             <a href="https://universe.roboflow.com/jayants-workspace-mbbme/so101-objectdetection" target="_blank" class="project-link">
-              Detector
+              Roboflow Detector
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
           </div>
